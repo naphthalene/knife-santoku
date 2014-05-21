@@ -3,19 +3,19 @@ require 'etc'
 
 module KnifeSantoku
   class Callback
-    
+
     include Chef::Mixin::FromFile
-    
+
     def initialize(file, notifier, argv)
       @file = file
       @notifier = notifier
       @argv = argv.join(" ")
     end
-    
+
     def run
       from_file(@file)
     end
-    
+
     def match(regexp, &proc)
       matches = regexp.match(@argv)
 
@@ -29,7 +29,7 @@ module KnifeSantoku
         proc.call
       end
     end
-    
+
     def notify(type, msg="#{Etc.getlogin} ran: #{@argv}")
       @notifier.notify(type, msg)
     end

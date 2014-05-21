@@ -13,7 +13,6 @@ class Chef::Application::Knife
     quiet_traps
 
     santoku.run_before_callbacks
-    binding.pry
     Chef::Knife.run(ARGV, options)
 
     santoku.run_after_callbacks
